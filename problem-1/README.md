@@ -1,137 +1,176 @@
-# Product Price Scraper
+# Price Watcher & Price Tracker Solutions
 
-A smart script that fetches live prices and product names from various e-commerce websites.
+This repository contains two solutions for tracking product prices from e-commerce websites:
 
-## Features
+1. **Level 1: Price Watcher** - Extracts current prices from various e-commerce websites
+2. **Level 2: Price Tracker** - Monitors multiple products from a mock API over time and records price history
 
-- Extracts product names and prices from multiple e-commerce platforms
-- Handles both static HTML websites and JavaScript-rendered pages
-- Provides error handling for network issues and missing elements
-- Works with various price formats and HTML structures
-- Detects and reports anti-scraping measures from websites
+## Level 1: Price Watcher
 
-## Dependencies
+This script extracts product names and prices from various e-commerce websites to help users track prices without manually checking product pages.
 
-All dependencies are listed in the `requirements.txt` file:
+### Features
+
+- Extracts product names and current prices from multiple e-commerce platforms:
+  - Amazon
+  - Flipkart
+  - Books To Scrape
+  - Meesho
+  - Generic support for other e-commerce sites
+
+- Handles various price formats and currencies
+- Provides fallback mechanisms when primary extraction fails
+- Works with both static HTML and JavaScript-rendered pages
+- Comprehensive error handling for network failures and missing elements
+
+### Requirements
+
+The script requires Python 3.6+ and the following libraries:
+
 ```
-requests>=2.25.0
-beautifulsoup4>=4.9.3
-selenium>=4.0.0
-webdriver-manager>=3.5.0
+requests
+beautifulsoup4
+selenium
+webdriver_manager
 ```
 
-## Setup Instructions
+Additionally, you need to have Chrome browser installed for Selenium WebDriver.
 
-1. **Install Python**
-   Make sure you have Python 3.6 or higher installed.
+### Installation
 
-2. **Set up a Virtual Environment**
-   
-   **Windows:**
-   ```bash
-   # Navigate to the project directory
-   cd problem-1
-   
-   # Create a virtual environment
-   python -m venv venv
-   
-   # Activate the virtual environment
-   .\venv\Scripts\Activate.ps1  # For PowerShell
-   # OR
-   .\venv\Scripts\activate.bat  # For Command Prompt
-   ```
-   
-   **Linux/macOS:**
-   ```bash
-   # Navigate to the project directory
-   cd problem-1
-   
-   # Create a virtual environment
-   python3 -m venv venv
-   
-   # Activate the virtual environment
-   source venv/bin/activate
-   ```
-
-3. **Install Required Packages**
-   ```bash
-   # Install all dependencies from requirements.txt
-   pip install -r requirements.txt
-   ```
-
-4. **ChromeDriver Setup**
-   The script uses Chrome browser for JavaScript-rendered sites:
-   - Chrome browser should be installed on your system
-   - The webdriver-manager package will automatically download and manage the appropriate ChromeDriver version
-
-## How to Run the Script
-
-Once the virtual environment is activated and dependencies are installed:
+1. Install the required Python packages:
 
 ```bash
-python level-1.py "URL_OF_PRODUCT"
+pip install requests beautifulsoup4 selenium webdriver_manager
 ```
 
-Example:
+2. Make sure Chrome browser is installed on your system.
+
+### Usage
+
+Run the script with the following command:
+
 ```bash
-python level-1.py "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
+python level-1.py <product_url> [options]
 ```
 
-### Optional Arguments
+#### Arguments:
 
-The script supports additional arguments:
+- `product_url`: URL of the product page to track (required)
 
-- `--debug`: Enable detailed debug output in console and log file
-- `--user-agent`: Specify a custom user agent to bypass some website restrictions
+#### Options:
 
-Example with custom user agent:
+- `--no-headless`: Run browser in visible mode instead of headless mode
+- `--timeout TIMEOUT`: Set custom timeout in seconds for page loading (default: 20)
+
+#### Examples:
+
 ```bash
-python level-1.py "https://www.meesho.com/product/123" --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+# Extract price from Books To Scrape
+python level-1.py https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html
+
+# Extract price from Amazon with a longer timeout
+python level-1.py https://www.amazon.in/product-url --timeout 30
+
+# Extract price from Flipkart with visible browser
+python level-1.py https://www.flipkart.com/product-url --no-headless
 ```
 
-## Handling Website Blocks
+#### Output Format
 
-Many e-commerce sites implement anti-scraping measures to prevent automated data collection. The script has built-in detection for common blocking techniques and will provide appropriate feedback.
+The script provides:
 
-If you encounter "Access Denied" or other blocking messages:
+1. A human-readable summary with product name, price, and currency
+2. A complete JSON output with all extracted information
 
-1. Try using a custom user agent (see example above)
-2. Some websites may require additional techniques beyond the scope of this script
-3. Consider respecting the website's terms of service and using their official API if available
+Example output:
 
-## Supported E-commerce Sites
+```
+Product Information:
+Name: A Light in the Attic
+Price: GBP 51.77 (£51.77)
+URL: https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html
 
-The script is specifically optimized for:
-- books.toscrape.com
-- Amazon
-- Flipkart
-- Meesho
+Full JSON Output:
+{
+  "product_name": "A Light in the Attic",
+  "price": 51.77,
+  "currency": "GBP",
+  "price_raw": "£51.77",
+  "url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
+}
+```
 
-Additionally, it includes generic extraction methods that attempt to work with other e-commerce sites.
+## Level 2: Price Tracker
 
-## Assumptions Made
+This script tracks product prices from a mock e-commerce API over time, records historical data in CSV format, and detects significant price changes.
 
-1. **Network Connectivity**
-   - The script assumes an active internet connection is available
-   - Timeouts are set to 10 seconds for requests
+### Features
 
-2. **Browser Availability**
-   - For JavaScript-rendered sites, Chrome browser is assumed to be installed
+- Monitors multiple products simultaneously from the mock API
+- Records price history in CSV format with timestamps
+- Detects significant price changes (>5% movement)
+- Handles edge cases:
+  - Skips duplicate entries with no price change
+  - Handles missing or unavailable products
+  - Detects price inconsistencies
 
-3. **Price Elements**
-   - We assume prices are generally represented in common HTML structures
-   - Currency symbols and formatting may vary, but we clean them for consistency
+- Generates a detailed summary report of price tracking results
+- Configurable monitoring interval and price change threshold
 
-4. **Scraping Limitations**
-   - Some websites implement anti-scraping measures that could block the script
-   - Dynamic sites might change their HTML structure, requiring updates to the selectors
+### Requirements
 
-5. **Execution Environment**
-   - The script assumes it's running in an environment where browser automation is allowed
+The script requires Python 3.6+ and the following libraries:
 
-## Error Handling
+```
+requests
+beautifulsoup4
+```
 
-- The script logs errors and exceptions for debugging
-- It first attempts static extraction (faster) before falling back to dynamic extraction
-- If both methods fail, it will notify the user that no information could be extracted
-- For websites with blocking mechanisms, specific advice is provided
+### Installation
+
+Install the required Python packages:
+
+```bash
+pip install requests beautifulsoup4
+```
+
+### Usage
+
+Run the script with the following command:
+
+```bash
+python level-2.py [options]
+```
+
+#### Options:
+
+- `--api-url URL`: Base URL of the e-commerce API (default: https://cyber.istenith.com)
+- `--output-dir DIR`: Directory to store price history data (default: price_history)
+- `--interval SECONDS`: Monitoring interval in seconds (default: 60)
+- `--duration SECONDS`: Total monitoring duration in seconds (optional)
+- `--iterations NUM`: Maximum number of monitoring iterations (optional)
+- `--threshold PERCENT`: Significant price change threshold percentage (default: 5.0)
+
+#### Examples:
+
+```bash
+# Monitor prices with default settings
+python level-2.py
+
+# Monitor with 30-second interval for 1 hour
+python level-2.py --interval 30 --duration 3600
+
+# Monitor with custom threshold and 10 iterations
+python level-2.py --threshold 2.5 --iterations 10
+```
+
+### Output Files
+
+The script generates two CSV files in the output directory:
+
+1. **price_history.csv**: Contains all price data points with timestamps
+   - Columns: product_id, product_name, timestamp, price, currency, significant_change, change_percentage
+
+2. **price_summary_report.csv**: Contains a summary of price tracking for each product
+   - Columns: product_id, product_name, initial_price, latest_price, min_price, max_price, price_change, percentage_change, significant_changes_count, data_points 
