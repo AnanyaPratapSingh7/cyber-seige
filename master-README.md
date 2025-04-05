@@ -31,11 +31,13 @@ Our solutions cover multiple problem domains:
 ### 📄 Problem 2: Invoice Processing System
 - **Level 1**: Multi-format invoice data extraction pipeline
 
-### 🔒 Problem 3: Cybersecurity Challenges
-- *Solutions coming soon...*
+### 🎵 Problem 3: Audio Beat Detection
+- **Level 1**: Beat Detection Core - Basic beat detection script that outputs beat timestamps
+- **Level 2**: Advanced Cut Marker Generator - Enhanced beat detection with customizable parameters for video editing
 
-### 💻 Problem 4: Advanced Automation
-- *Solutions coming soon...*
+### 🔒 Problem 4: SSH Brute-Force Detector
+- **Level 1**: SSH Brute-Force Detector with Auto-Block - Basic SSH brute-force detection and IP blocking
+- **Level 2**: Advanced Threat Mitigation System - Enhanced defender with real-time alerts, adaptive blocking, and distributed attack detection
 
 ## 🛠️ Technologies Used
 
@@ -46,6 +48,8 @@ Our solutions cover multiple problem domains:
   <img src="https://img.shields.io/badge/beautifulsoup4-%236C6C6C.svg?style=for-the-badge" alt="BeautifulSoup4">
   <img src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV">
   <img src="https://img.shields.io/badge/regex-%23276DC3.svg?style=for-the-badge" alt="Regex">
+  <img src="https://img.shields.io/badge/librosa-%23F7931E.svg?style=for-the-badge" alt="Librosa">
+  <img src="https://img.shields.io/badge/cybersecurity-%23FF0000.svg?style=for-the-badge" alt="Cybersecurity">
 </div>
 
 ## 📊 Features & Highlights
@@ -62,6 +66,18 @@ Our solutions cover multiple problem domains:
 - **Intelligent Data Parsing**: Automated extraction of key invoice fields
 - **Data Validation & Cleaning**: Ensuring data integrity and consistency
 
+### Problem 3: Audio Beat Detection
+- **Energy-Based Onset Detection**: Analysis of audio waves to detect beats
+- **Variable BPM Handling**: Works with tempo changes and complex rhythms
+- **Customizable Parameters**: Adjustable sensitivity for different music genres
+- **Video Cut Point Generation**: Formatted timestamps perfect for video editing software
+
+### Problem 4: SSH Brute-Force Detection
+- **Cross-Platform Security**: Works on Linux, macOS, and Windows systems
+- **Real-Time Alerts**: Multi-channel notifications via Slack and email
+- **Adaptive Blocking**: Intelligent cooldown and persistent rule tracking
+- **Distributed Attack Detection**: Identifies coordinated attacks from multiple sources
+
 ## 📁 Repository Structure
 
 ```
@@ -76,11 +92,17 @@ cyber-siege/
 │   ├── level-1.py             # Invoice Extraction System
 │   └── README.md              # Documentation for Problem 2
 │
-├── problem-3/                 # Cybersecurity Challenges
-│   └── ...                    # Coming soon
+├── problem-3/                 # Audio Beat Detection
+│   ├── level-1.py             # Beat Detection Core
+│   ├── level-2.py             # Advanced Cut Marker Generator
+│   ├── README.md              # Documentation for Problem 3
+│   └── requirements.txt       # Dependencies for audio processing
 │
-├── problem-4/                 # Advanced Automation
-│   └── ...                    # Coming soon
+├── problem-4/                 # SSH Brute-Force Detection
+│   ├── level-1.py             # Basic Brute-Force Detector
+│   ├── level-2.py             # Advanced Threat Mitigation
+│   ├── README.md              # Documentation for Problem 4
+│   └── requirements.txt       # Dependencies for security tools
 │
 └── master-README.md           # Main Repository Documentation
 ```
@@ -91,6 +113,8 @@ cyber-siege/
 - Python 3.8+
 - Chrome Browser (for Selenium-based solutions)
 - Tesseract OCR (for invoice processing)
+- SSH Server (for testing brute-force detection)
+- Audio libraries (for beat detection)
 
 ### Installation
 ```bash
@@ -103,6 +127,12 @@ pip install requests beautifulsoup4 selenium webdriver_manager undetected-chrome
 
 # Install requirements for Problem 2
 pip install pytesseract pillow pdf2image PyPDF2 pandas opencv-python-headless numpy
+
+# Install requirements for Problem 3
+pip install -r problem-3/requirements.txt
+
+# Install requirements for Problem 4
+pip install -r problem-4/requirements.txt
 ```
 
 ### Running the Solutions
