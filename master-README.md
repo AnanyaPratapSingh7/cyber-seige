@@ -1,7 +1,7 @@
-# 🏆 CyberSeige 2025 - Team Sudoers
+# 🏆 CyberSiege 2025 - Team Sudoers
 
 <div align="center">
-  <img src="https://img.shields.io/badge/competition-CyberSeige_2025-blue?style=for-the-badge&logo=github" alt="CyberSeige 2025">
+  <img src="https://img.shields.io/badge/competition-CyberSiege_2025-blue?style=for-the-badge&logo=github" alt="CyberSiege 2025">
   <img src="https://img.shields.io/badge/team-Sudoers-orange?style=for-the-badge&logo=linux" alt="Team Sudoers">
   <img src="https://img.shields.io/badge/event-Prodyogiki_2025-green?style=for-the-badge&logo=hack-the-box" alt="Prodyogiki 2025">
   <img src="https://img.shields.io/badge/organization-ISTE-red?style=for-the-badge&logo=python" alt="ISTE">
@@ -13,7 +13,7 @@
 
 ## 🚀 Overview
 
-This repository contains our team Sudoers' solutions for the CyberSeige competition conducted as part of Prodyogiki 2025 by ISTE. We tackled challenging problems involving web scraping, data processing, automation, and cybersecurity.
+This repository contains our team Sudoers' solutions for the CyberSiege competition conducted as part of Prodyogiki 2025 by ISTE. We tackled challenging problems involving web scraping, data processing, automation, and cybersecurity.
 
 <div align="center">
   <img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" width="400px" alt="Hacking Animation">
@@ -153,7 +153,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🔗 Acknowledgements
 
 - [ISTE](https://www.isteonline.in/) for organizing the Prodyogiki 2025 event
-- CyberSeige competition organizers for the challenging problem sets
+- CyberSiege competition organizers for the challenging problem sets
 - All open-source libraries and tools that made our solutions possible
 
 ---
